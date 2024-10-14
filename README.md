@@ -9,5 +9,6 @@
 - [StatefulWidget](statefulwidget/lib/screen/home_screen.dart) 
 - [StatelessWidget life cycle](statelesswidget_lifecycle/lib/screen/home_screen.dart)
 - [StatefullWidget life cycle](statefullwidget_lifecycle/lib/screen/home_screen.dart)
+- [프로젝트-Image Carousel(전자액자)](image_carousel/lib/screen/home_screen.dart)
 
 ### [중급] Flutter 진짜 실전! 상태관리, 캐시관리, Code Generation, GoRouter, 인증로직 등 중수가 되기 위한 필수 스킬들!
