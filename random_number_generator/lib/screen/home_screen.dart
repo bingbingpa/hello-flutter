@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:random_number_generator/constant/color.dart';
+import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,21 +28,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 numbers: numbers,
               ),
               _Footer(
-                onPressed: () {
-                  setState(() {
-                    numbers = [
-                      999,
-                      888,
-                      777
-                    ];
-                  });
-                },
+                onPressed: generateRandomNumber,
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  generateRandomNumber() {
+    final rand = Random();
+    final Set<int> newNumbers = {};
+    while (newNumbers.length < 3) {
+      newNumbers.add(rand.nextInt(1000));
+    }
+    setState(() {
+      numbers = newNumbers.toList();
+    });
   }
 }
 
@@ -100,13 +104,11 @@ class _Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-
-        /// 버튼이 있는곳
-        ElevatedButton(
-            onPressed: onPressed,
-            style: ElevatedButton.styleFrom(
-                backgroundColor: redColor, foregroundColor: Colors.white),
-            child: Text('생성하기!'));
+    /// 버튼이 있는곳
+    return ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+            backgroundColor: redColor, foregroundColor: Colors.white),
+        child: Text('생성하기!'));
   }
 }
