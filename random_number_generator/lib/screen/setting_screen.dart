@@ -3,7 +3,8 @@ import 'package:random_number_generator/component/number_to_image.dart';
 import 'package:random_number_generator/constant/color.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({super.key});
+  final int maxNumber;
+  const SettingScreen({super.key, required this.maxNumber});
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();
@@ -11,6 +12,12 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   double maxNumber = 1000;
+
+  @override
+  void initState() {
+    super.initState();
+    maxNumber = widget.maxNumber.toDouble();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +34,18 @@ class _SettingScreenState extends State<SettingScreen> {
                 value: maxNumber,
                 onChanged: onSliderChanged,
               ),
-              _Button()
+              _Button(
+                onPressed: onSavePressed
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  void onSavePressed() {
+    Navigator.of(context).pop(maxNumber.toInt());
   }
 
   void onSliderChanged(double value) {
@@ -43,16 +56,16 @@ class _SettingScreenState extends State<SettingScreen> {
 }
 
 class _Button extends StatelessWidget {
-  const _Button({super.key});
+  final VoidCallback onPressed;
+
+  const _Button({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           backgroundColor: redColor, foregroundColor: Colors.white),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
+      onPressed: onPressed,
       child: Text('저장!'),
     );
   }
@@ -85,7 +98,6 @@ class _Slider extends StatelessWidget {
         min: 1000,
         max: 100000,
         activeColor: blueColor,
-        onChanged: onChanged
-    );
+        onChanged: onChanged);
   }
 }
