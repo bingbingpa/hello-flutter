@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:random_number_generator/constant/color.dart';
 import 'dart:math';
 
+import 'package:random_number_generator/screen/setting_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -23,7 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _Header(),
+              _Header(
+                onPressed: onSettingIconPressed,
+              ),
               _Body(
                 numbers: numbers,
               ),
@@ -34,6 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  onSettingIconPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (BuildContext context){
+            return SettingScreen();
+          }
+      )
     );
   }
 
@@ -50,7 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({super.key});
+  final VoidCallback onPressed;
+
+  const _Header({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +80,10 @@ class _Header extends StatelessWidget {
               color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w700),
         ),
         IconButton(
-            color: redColor, onPressed: () {}, icon: Icon(Icons.settings))
+          color: redColor,
+          icon: Icon(Icons.settings),
+          onPressed: onPressed,
+        )
       ],
     );
   }
