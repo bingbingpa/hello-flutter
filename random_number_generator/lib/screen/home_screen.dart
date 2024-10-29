@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:random_number_generator/component/number_to_image.dart';
 import 'package:random_number_generator/constant/color.dart';
 import 'dart:math';
 
@@ -42,13 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   onSettingIconPressed() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-          builder: (BuildContext context){
-            return SettingScreen();
-          }
-      )
-    );
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return SettingScreen();
+    }));
   }
 
   generateRandomNumber() {
@@ -100,17 +98,7 @@ class _Body extends StatelessWidget {
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: numbers
-            .map((e) => e.toString().split(''))
-            .map((e) => Row(
-                children: e
-                    .map((number) => Image.asset(
-                          'asset/img/$number.png',
-                          width: 50.0,
-                          height: 70.0,
-                        ))
-                    .toList()))
-            .toList(),
+        children: numbers.map((e) => NumberToImage(number: e)).toList(),
       ),
     );
   }
