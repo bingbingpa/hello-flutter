@@ -31,6 +31,37 @@ class RouteTwoScreen extends StatelessWidget {
           },
           child: Text('Push Route Three'),
         ),
+        OutlinedButton(
+          /// [HomeScreen, RouteOneScreen, RouteTwoScreen]
+          /// push - [HomeScreen, RouteOneScreen, RouteTwoScreen, RouteThreeScreen]
+          /// pushReplacement - [HomeScreen, RouteOneScreen, RouteThreeScreen]
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return RouteThreeScreen();
+                },
+                settings: RouteSettings(
+                  arguments: 999,
+                )
+              ),
+            );
+          },
+          child: Text('Push Replacement'),
+        ),
+        OutlinedButton(
+          /// [HomeScreen, RouteOneScreen, RouteTwoScreen]
+          /// push - [HomeScreen, RouteOneScreen, RouteTwoScreen, RouteThreeScreen]
+          /// pushReplacement - [HomeScreen, RouteOneScreen, RouteThreeScreen]
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed(
+              '/three',
+              arguments: 999,
+            );
+          },
+          child: Text('Push Replacement Named'),
+        )
+
       ],
     );
   }
