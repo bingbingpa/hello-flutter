@@ -38,13 +38,12 @@ class RouteTwoScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return RouteThreeScreen();
-                },
-                settings: RouteSettings(
-                  arguments: 999,
-                )
-              ),
+                  builder: (BuildContext context) {
+                    return RouteThreeScreen();
+                  },
+                  settings: RouteSettings(
+                    arguments: 999,
+                  )),
             );
           },
           child: Text('Push Replacement'),
@@ -60,8 +59,21 @@ class RouteTwoScreen extends StatelessWidget {
             );
           },
           child: Text('Push Replacement Named'),
+        ),
+        OutlinedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              '/three',
+              (route) {
+                /// 만약에 삭제 할거면(Route stack) false 반환
+                /// 만약에 삭제 안할거면 true 반환
+                return route.settings.name == '/';
+              },
+              arguments: 999,
+            );
+          },
+          child: Text('Push Named And Remove Until'),
         )
-
       ],
     );
   }
