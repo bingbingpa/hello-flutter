@@ -13,5 +13,6 @@
 - [프로젝트-U&I](u_and_i/lib/screen/home_screen.dart)
 - [프로젝트-Random Number Generator](random_number_generator)
 - [Button style](buttons/lib/screen/home_screen.dart)
+- [Navigation](navigation)
 
 ### [중급] Flutter 진짜 실전! 상태관리, 캐시관리, Code Generation, GoRouter, 인증로직 등 중수가 되기 위한 필수 스킬들!
