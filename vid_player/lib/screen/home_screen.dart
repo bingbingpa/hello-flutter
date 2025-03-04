@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,14 +17,17 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.black,
       body: showVideoPlayer
           ? _VideoPlayer()
-          : _VideoSelector(onLogoTab: onLogoTab),
+          : _VideoSelector(
+              onLogoTab: onLogoTab,
+            ),
     );
   }
 
-  onLogoTab() {
-    setState(() {
-      showVideoPlayer = true;
-    });
+  onLogoTab() async {
+    final video = await ImagePicker().pickVideo(
+      source: ImageSource.gallery,
+    );
+    print(video);
   }
 }
 

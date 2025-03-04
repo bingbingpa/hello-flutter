@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>비디오를 선택하기 위해 갤러리 접근 권한이 필요합니다.</string>
 	<key>CFBundleDisplayName</key>
 	<string>Vid Player</string>
 	<key>CFBundleExecutable</key>
