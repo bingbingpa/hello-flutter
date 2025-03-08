@@ -9,14 +9,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool showVideoPlayer = false;
+  XFile? video;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: showVideoPlayer
-          ? _VideoPlayer()
+      body: video != null
+          ? _VideoPlayer(
+              video: video!,
+            )
           : _VideoSelector(
               onLogoTab: onLogoTab,
             ),
@@ -27,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final video = await ImagePicker().pickVideo(
       source: ImageSource.gallery,
     );
-    print(video);
+    setState(() {
+      this.video = video;
+    });
   }
 }
 
@@ -107,7 +111,9 @@ class _Title extends StatelessWidget {
 }
 
 class _VideoPlayer extends StatelessWidget {
-  const _VideoPlayer({super.key});
+  final XFile video;
+
+  const _VideoPlayer({super.key, required this.video});
 
   @override
   Widget build(BuildContext context) {
